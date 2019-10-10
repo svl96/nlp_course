@@ -1,0 +1,29 @@
+weights_simple.pickle
+        kernel_size = 5
+        emb = self.emb(input_ix)
+        padd = self.padd(emb)
+        conv = self.conv(padd)
+        return self.final(conv)
+        
+        self.emb = L.Embedding(n_tokens, output_dim=emb_size)
+        self.padd = L.ZeroPadding1D(padding= (strides * (kernel_size - 1), 0))
+        self.conv = L.Conv1D(hid_size, kernel_size)
+        self.final = L.Dense(n_tokens)
+        
+kernel10_drop_simple
+            kernel_size = 10
+        strides = 1
+        #YOUR CODE - create layers/variables and any metadata you want, e.g. self.emb = L.Embedding(...)
+        self.emb = L.Embedding(n_tokens, output_dim=emb_size)
+        self.padd = L.ZeroPadding1D(padding= (strides * (kernel_size - 1), 0))
+        self.conv = L.Conv1D(hid_size, kernel_size)
+        self.dens = L.Dense(hid_size)
+        self.drop = L.Dropout(0.1)
+        self.final = L.Dense(n_tokens)
+        
+        emb = self.emb(input_ix)
+        padd = self.padd(emb)
+        conv = self.conv(padd)
+
+        drop = self.drop(conv)
+        return self.final(drop)
