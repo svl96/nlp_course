@@ -72,7 +72,6 @@ class Vocab:
 
 ### Utility TF functions ###
 
-
 def infer_length(seq, eos_ix, time_major=False, dtype=tf.int32):
     """
     compute length given output indices and eos code
@@ -85,7 +84,6 @@ def infer_length(seq, eos_ix, time_major=False, dtype=tf.int32):
     count_eos = tf.cumsum(is_eos,axis=axis,exclusive=True)
     lengths = tf.reduce_sum(tf.cast(tf.equal(count_eos,0),dtype),axis=axis)
     return lengths
-
 
 def infer_mask(seq, eos_ix, time_major=False, dtype=tf.float32):
     """
