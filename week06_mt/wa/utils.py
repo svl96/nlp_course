@@ -3,9 +3,9 @@
 def recall(reference, candidate):
     "Compute recall of candidate on 'sure' alignments in reference"
     reference_sure, candidate_sure_correct = 0, 0
-    assert len(reference) == len(candidate)
+#     assert len(reference) == len(candidate)
     for i, ref in enumerate(reference):
-        print(ref, candidate[i])
+#         print(ref, candidate[i])
         for src_index in ref:
             for trg_index in ref[src_index]:
                 if ref[src_index][trg_index] == "S":
@@ -79,7 +79,7 @@ def read_parallel_corpus(path, has_alignments=False):
     "Load a parallel corpus from disk and tokenize."
     max_src_length, max_trg_length = 0, 0
     src_corpus, trg_corpus, alignments = [], [], [] if has_alignments else None
-    for line in open(path):
+    for line in open(path, encoding='utf8'):
         if has_alignments:
             src, trg, aligned = line.strip('\n').split('\t')
         else:
@@ -107,6 +107,6 @@ def alignment_string(alignments):
 
 def write_aligned_corpus(aligned_corpus, suffix, src_lang='en', trg_lang='cs'):
     out = open('%s-%s-wa.%s' % (src_lang, trg_lang, suffix), 'w')
-    print(aligned_corpus)
+#     print(aligned_corpus)
     for src_tokens, trg_tokens, alignments in aligned_corpus:
         out.write('%s\t%s\t%s\n' % (' '.join(src_tokens), ' '.join(trg_tokens), alignment_string(alignments)))
